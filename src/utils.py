@@ -8,6 +8,7 @@ from sklearn.compose import ColumnTransformer
 from src.exception import CustomException
 from src.logger import logging
 
+from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import r2_score
 
 import dill
@@ -23,29 +24,37 @@ def save_object(file_path, obj):
             dill.dump(obj, file)
             
     except Exception as e:
-        pass
+        raise CustomException(e, sys)
     
-def evaluate_models(X_train, y_train,X_test,y_test,models):
+# di dalam src/utils.py
+
+def evaluate_models(X_train, y_train,X_test,y_test,models, param):
     try:
         report = {}
+        # Buat dictionary baru untuk menyimpan model yang sudah dilatih
+        trained_models = {}
 
         for i in range(len(list(models))):
+            model_name = list(models.keys())[i]
             model = list(models.values())[i]
-            model.fit(X_train,y_train)
-
-            #model.fit(X_train, y_train)  # Train model
-
-            y_train_pred = model.predict(X_train)
-
-            y_test_pred = model.predict(X_test)
-
-            train_model_score = r2_score(y_train, y_train_pred)
-
+            para = param[model_name]
+            
+            gs = GridSearchCV(model, para, cv=3)
+            gs.fit(X_train, y_train)
+            
+            # Ambil model terbaik dari hasil GridSearchCV
+            best_estimator = gs.best_estimator_
+            
+            # Simpan model yang sudah dilatih ini
+            trained_models[model_name] = best_estimator
+            
+            y_test_pred = best_estimator.predict(X_test)
             test_model_score = r2_score(y_test, y_test_pred)
 
-            report[list(models.keys())[i]] = test_model_score
+            report[model_name] = test_model_score
 
-        return report
+        # Kembalikan laporan DAN kamus model yang sudah dilatih
+        return report, trained_models
 
     except Exception as e:
         raise CustomException(e, sys)
