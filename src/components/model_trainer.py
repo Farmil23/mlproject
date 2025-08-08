@@ -108,7 +108,7 @@ class ModelTrainer:
                     
             predicted = best_model.predict(X_test)
             final_r2_score = r2_score(y_test, predicted)
-            return final_r2_score# Gunakan nama variabel baru
+            return final_r2_score# Gunakan nama variabel baru!
                 
         except Exception as e:
             raise CustomException(e, sys)
