@@ -9,4 +9,4 @@ lightgbm
 dill
 flask
 pickle
-# -e .
+gunicorn
