@@ -15,8 +15,6 @@ Proyek ini tidak hanya berfokus pada pembangunan model yang akurat, tetapi juga 
 
 Proyek ini dibangun di atas arsitektur CI/CD (Continuous Integration/Continuous Deployment) yang modern, memastikan setiap perubahan kode yang di-push ke GitHub akan secara otomatis di-deploy ke lingkungan produksi.
 
-![Arsitektur CI/CD](URL_GAMBAR_ARSITEKTUR_ANDA)
-*(Tips: Anda bisa membuat diagram sederhana menggunakan tools seperti diagrams.net atau Excalidraw, lalu unggah gambarnya ke repo dan ganti URL di atas)*
 
 * **Source Control:** GitHub
 * **CI/CD Pipeline:** AWS CodePipeline
