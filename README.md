@@ -76,4 +76,4 @@ Selama proses deployment, saya menghadapi beberapa tantangan teknis yang memberi
 
 4.  **Kegagalan Boot Gunicorn:** Aplikasi gagal dimulai karena `ModuleNotFoundError`. Setelah men-debug log `web.stdout.log`, saya menemukan bahwa `Procfile` perlu disederhanakan untuk menunjuk langsung ke `app:app`, yang menyelesaikan masalah tersebut.
 
-Proses debugging ini memperkuat pemahaman saya tentang bagaimana berbagai layanan AWS bekerja bersama dan pentingnya konfigurasi lingkungan yang tepat untuk aplikasi produksi. 
+Proses debugging ini memperkuat pemahaman saya tentang bagaimana berbagai layanan AWS bekerja bersama dan pentingnya konfigurasi lingkungan yang tepat untuk aplikasi produksi.
